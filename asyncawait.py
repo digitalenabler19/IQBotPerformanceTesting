@@ -77,14 +77,6 @@ async def getListofFilesSuccessfullyProcessed(uploadResponse):
            print('length of list'+str(len(filenamelist)))
            response = requests.get(successurl, data=data_json, headers=headers)
            output = response.json()
-           #logger.warning("search for------>"+uploadResponse['fileName'])
-           
-           #logger.warning(output)
-           # matchitems=set(output).intersection(filenamelist)
-           print('------------------------------')
-           # print(matchitems)
-           # for value in matchitems:
-           #     print(value)
            for filename in filenamelist:
                for outputFileName in output:
                    if filename in outputFileName:
@@ -102,7 +94,6 @@ LI_ID="4ebd6e56-ee4a-4ba8-8349-1814cfacde3b"
 FILE_DIRECTORY="E:\\Projects\\Python\\PDFtoIMage\\PDFImages"
 
 async def run():
-    #number = await getListofFilesSuccessfullyProcessed(await uploadFiles(await authenticate("ec2-3-6-118-186.ap-south-1.compute.amazonaws.com","prasad_iqb2","password1"),"4ebd6e56-ee4a-4ba8-8349-1814cfacde3b", "ec2-3-6-118-186.ap-south-1.compute.amazonaws.com"))
     number = await getListofFilesSuccessfullyProcessed(await uploadFiles(await authenticate(SERVER_IP,USER_NAME,PASSWORD),LI_ID,FILE_DIRECTORY))
     print('success:', number)
     # except ValueError as exc:
